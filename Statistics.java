@@ -48,11 +48,7 @@ public class Statistics {
 
 			if(currIndex > 0){
 				
-				// System.out.println("Here! -> x_i[" + currIndex + "] = " + x_i[currIndex]);
-				// System.out.println("Here! -> F_i[" + currIndex + "] = " + F_i[currIndex]);
-				// System.out.println("Here! -> F_i[" + (currIndex - 1) + "] = " + F_i[currIndex - 1]);
 				F_i[currIndex] = F_i[currIndex].add(F_i[currIndex - 1]);
-				// System.out.println("Here! -> F_i[" + currIndex + "] = " + F_i[currIndex]);
 			}
 
 			currIndex++;
