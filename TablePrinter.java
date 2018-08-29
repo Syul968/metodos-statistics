@@ -11,6 +11,14 @@ public class TablePrinter {
 	public static final int ALIGN_CENTER = 0;
 	public static final int ALIGN_RIGHT = 1;
 	
+	/**
+	 *	Builds a String representation of a border based
+	 *	on "+" and "-" chars.
+	 *
+	 *	@param	cellLength	The length of the cell to which this border belongs.
+	 *	@param	starts		Whether this border belongs to a first column.
+	 *	@return				String representation of the border.
+	 */
 	public static String printBorder(int cellLength, boolean starts) {
 		String border = "";
 		if(starts)
@@ -24,6 +32,16 @@ public class TablePrinter {
 		return border;
 	}
 	
+	/**
+	 *	Builds a String representation of a row with given tags
+	 *	and lengths. Makes use of printBorder method.
+	 *
+	 *	@param	lengths		Array of row cells' lenghts.
+	 *	@param	tags		Array of row cells' tags.
+	 *	@param	alignment	How to align tags in the row. Either ALIGN_LEFT, ALIGN_CENTER or ALIGN_RIGHT.
+	 *	@param	top			Whether this is the first row in a table.
+	 *	@return				String representation of the row.
+	 */
 	public static String printRow(int[] lengths, String[] tags, int alignment, boolean top) {
 		String row = "";
 		
