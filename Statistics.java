@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.Arrays;
 import java.util.*;
 
 public class Statistics {
@@ -119,24 +117,5 @@ public class Statistics {
 		stdDev = sqrt(variance(data));
 		
 		return stdDev;
-	}
-	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		
-		//	Read set size and allocate memory for data
-		int n = in.nextInt();
-		int[] data = new int[n];
-		//	Read data
-		for(int i = 0; i < n; i++) {
-			data[i] = in.nextInt();
-		}
-		
-		System.out.println(tableAsString(data));
-		System.out.printf("X- = %.4f\n", mean(data));
-		System.out.printf("X~ = %.4f\n", median(data));
-		System.out.println("X^ = " + (int)mode(data));
-		System.out.printf("s2 = %.4f\n", variance(data));
-		System.out.printf("s  = %.4f\n", stdDev(data));
 	}
 }
