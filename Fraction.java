@@ -95,7 +95,7 @@ public class Fraction{
         if(this.getDenominator() ==  1)
             return Integer.toString(this.getNumerator());
 
-        string str = this.getNumerator() + "/" + denominator;
+        String str = this.getNumerator() + "/" + denominator;
         return str;
     }
 
