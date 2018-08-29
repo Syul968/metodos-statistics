@@ -1,16 +1,8 @@
 import java.util.*;
 import java.text.DecimalFormat;
+import java.util.stream.*;
 
 public class Statistics {
-	
-	public static int sum(int[] data) {
-		int sum = 0;
-		
-		for(int i = 0; i < data.length; i++)
-			sum += data[i];
-		
-		return sum;
-	}
 	
 	public static HashMap<Integer, Integer> frequencies(int[] data) {
 		HashMap<Integer, Integer> frequencies = new HashMap<Integer, Integer>();
@@ -78,10 +70,7 @@ public class Statistics {
 	}
 	
 	public static double mean(int[] data) {
-		double mean = 0.0;
-		
-		mean = (double)sum(data) / data.length;
-		return mean;
+		return (double)IntStream.of(data).sum() / data.length;
 	}
 	
 	public static double median(int[] data) {
