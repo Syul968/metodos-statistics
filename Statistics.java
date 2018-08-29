@@ -73,7 +73,8 @@ public class Statistics {
 
 			currIndex++;
 		}
-
+		
+		//	Define table format and content
 		int[] lengths = {20, 20, 20, 20, 20};
 		String[] headers = {"x_i", "n_i", "N_i", "f_i", "F_i"};
 		String[] rowTags = new String[5];
@@ -85,6 +86,7 @@ public class Statistics {
 		
 		for(int i = 0; i < distinctValuesCount; i++){
 			
+			//	Set row tags
 			rowTags[0] = formatter.format(x_i[i]);
 			rowTags[1] = formatter.format(n_i[i]);
 			rowTags[2] = formatter.format(N_i[i]);
@@ -97,10 +99,22 @@ public class Statistics {
 		return table;
 	}
 	
+	/**
+	 *	Computes data set mean.
+	 *
+	 *	@param	data	Data set.
+	 *	@return			Mean value.
+	 */
 	public static double mean(int[] data) {
 		return (double)IntStream.of(data).sum() / data.length;
 	}
 	
+	/**
+	 *	Computes median value in data set.
+	 *
+	 *	@param	data	Data set.
+	 *	@return			Median value.
+	 */
 	public static double median(int[] data) {
 		double median = 0.0;
 		
@@ -116,44 +130,51 @@ public class Statistics {
 		return median;
 	}
 	
+	/**
+	 *	Finds first mode in data set.
+	 *
+	 *	@param	data	Data set.
+	 *	@return			Smallest mode value.
+	 */
 	public static int mode(int[] data) {
 		int mode = 0;
 		
-		HashMap<Integer, Integer> values = frequencies(data);
-		Set mapSet = values.entrySet();
-		Iterator iterator = mapSet.iterator();
-		while(iterator.hasNext()) {
-			Map.Entry mapEntry = (Map.Entry)iterator.next();
-			if((Integer)mapEntry.getValue() > mode)
-				mode = (Integer)mapEntry.getKey();
+		for(HashMap.Entry<Integer, Integer> entry : frequencies(data).entrySet()) {
+			if(entry.getValue() > mode)
+				mode = entry.getKey();
 		}
 		
 		return mode;
 	}
 	
+	/**
+	 *	Computes variance for sample population.
+	 *	Please note min data set size is 2.
+	 *
+	 *	@param	data	Data set, min size 2.
+	 *	@return			Variance value.
+	 */
 	public static double variance(int[] data) {
 		double variance = 0.0;
 		int value;
 		double mean = mean(data);
 		
-		HashMap<Integer, Integer> frequencies = frequencies(data);
-		Set mapSet = frequencies.entrySet();
-		Iterator iterator = mapSet.iterator();
-		while(iterator.hasNext()) {
-			Map.Entry mapEntry = (Map.Entry)iterator.next();
-			value = (Integer)mapEntry.getKey();
-			variance += (Integer)mapEntry.getValue() * (value - mean) * (value - mean);
+		for(HashMap.Entry<Integer, Integer> entry : frequencies(data).entrySet()) {
+			value = entry.getKey();
+			variance += entry.getValue() * (value - mean) * (value - mean);
 		}
 		
 		variance = variance / (data.length - 1);
 		return variance;
 	}
 	
+	/**
+	 *	Computes standard deviation as variance square root.
+	 *
+	 *	@param	data	Data set, min size 2.
+	 *	@return			Standard deviation value.
+	 */
 	public static double stdDev(int[] data) {
-		double stdDev = 0.0;
-		
-		stdDev = Mathematics.sqrt(variance(data));
-		
-		return stdDev;
+		return Mathematics.sqrt(variance(data));
 	}
 }
