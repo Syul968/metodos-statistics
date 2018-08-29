@@ -2,15 +2,35 @@ import java.util.*;
 import java.text.DecimalFormat;
 import java.util.stream.*;
 
+/**
+ * Statistics
+ * This class builds the frequency table for a data set and
+ * finds the basic statistical measures: mean, median,
+ * mode, variance and standard deviation.
+ * 
+ * @version 08/28/2018
+ * @author Salvador Orozco Villalever - A07104218
+ * @author Luis Francisco Flores Romero - A01328937
+ */
+
 public class Statistics {
-	
+	/**
+	 *  Counts absolute frequency for
+	 *	each distinct data value.
+	 *  
+	 *	@param	data	Data set.
+	 *  @return			Absolute frequency table as HashMap.
+	 */
 	public static HashMap<Integer, Integer> frequencies(int[] data) {
+		//	Map data values to frequencies count
 		HashMap<Integer, Integer> frequencies = new HashMap<Integer, Integer>();
 		
 		for(int i = 0; i < data.length; i++) {
 			if(frequencies.containsKey(new Integer(data[i]))) {
+				// if value is in table, increment count
 				frequencies.put(data[i], new Integer(frequencies.get(data[i]) + 1));
 			} else {
+				// add value to table with count 1
 				frequencies.put(data[i], new Integer(1));
 			}
 		}
@@ -18,6 +38,14 @@ public class Statistics {
 		return frequencies;
 	}
 	
+	/**
+	 *  Builds a string representation of the frequencies
+	 *	table (x_i, n_i, N_i, f_i, F_i) for provided
+	 *	data set.
+	 *  
+	 *	@param	data	Data set.
+	 *  @return			The frequencies table as a String.
+	 */
 	public static String tableAsString(int[] data) {
 
 		HashMap<Integer, Integer> frequencies = frequencies(data);
@@ -46,24 +74,24 @@ public class Statistics {
 			currIndex++;
 		}
 
+		int[] lengths = {20, 20, 20, 20, 20};
+		String[] headers = {"x_i", "n_i", "N_i", "f_i", "F_i"};
+		String[] rowTags = new String[5];
+		
 		String table = "Frequency Table\n\n";
-		table += String.format("%20s", "x_i");
-		table += String.format("%20s", "n_i");
-		table += String.format("%20s", "N_i");
-		table += String.format("%20s", "f_i");
-		table += String.format("%20s", "F_i");
-		table += "\n\n";
+		table += TablePrinter.printRow(lengths, headers, TablePrinter.ALIGN_CENTER, true);
 
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		
 		for(int i = 0; i < distinctValuesCount; i++){
-
-			table += String.format("%20s", formatter.format(x_i[i]))
-				+ String.format("%20s", formatter.format(n_i[i]))
-				+ String.format("%20s", formatter.format(N_i[i]))
-				+ String.format("%20s", f_i[i])
-				+ String.format("%20s", F_i[i])
-				+ "\n";
+			
+			rowTags[0] = formatter.format(x_i[i]);
+			rowTags[1] = formatter.format(n_i[i]);
+			rowTags[2] = formatter.format(N_i[i]);
+			rowTags[3] = f_i[i].toString();
+			rowTags[4] = F_i[i].toString();
+			table += TablePrinter.printRow(lengths, rowTags, TablePrinter.ALIGN_RIGHT, false);
+			
 		}
 
 		return table;

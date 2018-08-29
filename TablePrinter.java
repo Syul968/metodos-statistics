@@ -1,56 +1,71 @@
+/**
+ * Table Printer
+ * This class prints formatted rows with string tags.
+ * 
+ * @version 08/28/2018
+ * @author Salvador Orozco Villalever - A07104218
+ * @author Luis Francisco Flores Romero - A01328937
+ */
 public class TablePrinter {
 	public static final int ALIGN_LEFT = -1;
 	public static final int ALIGN_CENTER = 0;
 	public static final int ALIGN_RIGHT = 1;
 	
-	public static void printBorder(int cellLength, boolean starts) {
+	public static String printBorder(int cellLength, boolean starts) {
+		String border = "";
 		if(starts)
-			System.out.print("+");
+			border += "+";
 			
 		for(int i = 0; i <= cellLength; i++) {
-			System.out.print("-");
+			border += "-";
 		}
-		System.out.print("+");
+		border += "+";
+		
+		return border;
 	}
 	
-	public static void printRow(int[] lengths, String[] tags, int alignment, boolean top) {
+	public static String printRow(int[] lengths, String[] tags, int alignment, boolean top) {
+		String row = "";
+		
 		if(top) {
-			printBorder(lengths[0], true);
+			row += printBorder(lengths[0], true);
 			for(int i = 1; i < lengths.length; i++) {
-				printBorder(lengths[i], false);
+				row += printBorder(lengths[i], false);
 			}
-			System.out.print("\n");
+			row += "\n";
 		}
 		
-		System.out.print("|");
+		row += "|";
 		for(int i = 0; i < lengths.length; i++) {
 			switch(alignment) {
 				case ALIGN_LEFT:
-					System.out.printf("%-" + lengths[i] + "s ", tags[i]);
+					row += String.format("%-" + lengths[i] + "s ", tags[i]);
 					break;
 				case ALIGN_CENTER:
 					int offset = (lengths[i] - tags[i].length()) / 2;
 					for(int j = 0; j <= offset; j++) {
-						System.out.print(" ");
+						row += " ";
 					}
-					System.out.print(tags[i]);
+					row += tags[i];
 					for(int j = 0; j < lengths[i] - tags[i].length() - offset; j++) {
-						System.out.print(" ");
+						row += " ";
 					}
 					break;
 				case ALIGN_RIGHT:
 				default:
-					System.out.printf(" %" + lengths[i] + "s", tags[i]);
+					row += String.format(" %" + lengths[i] + "s", tags[i]);
 					break;
 			}
-			System.out.print("|");
+			row += "|";
 		}
-		System.out.print("\n");
+		row += "\n";
 		
-		printBorder(lengths[0], true);
+		row += printBorder(lengths[0], true);
 		for(int i = 1; i < lengths.length; i++) {
-			printBorder(lengths[i], false);
+			row += printBorder(lengths[i], false);
 		}
-		System.out.print("\n");
+		row += "\n";
+		
+		return row;
 	}
 }
