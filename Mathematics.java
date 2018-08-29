@@ -1,10 +1,36 @@
+
+/**
+ * Class with utility mathematics functions.
+ * 
+ * @version 08/28/2018
+ * @author Luis Francisco Flores Romero - A01328937
+ * @author Salvador Orozco Villalever - A07104218
+ */
+
 public class Mathematics{
 
+	/**
+	 * Recursive method for calculating the 
+	 * Greatest Common Divisor (GCD) of two
+	 * integers.
+	 *
+	 * @param a the first integer
+	 * @param b the second integer 
+	 * @return the GCD of a and b
+	 */ 
     public static int computeGCD(int a, int b){
 
         return b == 0 ? a : computeGCD(b, a%b);
     }
 
+	/**
+	 * Method for calculating the square root of
+	 * a given real number based on Newton's 
+	 * root iteration method.
+	 *
+	 * @param n the number whose square root will
+	 * be calculated
+	 */
     public static double sqrt(double n) {
 		double root = n / 2.0;	//	Initial root guess
 		

@@ -1,9 +1,24 @@
 import java.util.*;
 
+/**
+ * Main class which includes the main method.
+ * 
+ * @version 08/28/2018
+ * @author Luis Francisco Flores Romero - A01328937
+ * @author Salvador Orozco Villalever - A07104218
+ */
+
 public class Main{
 
     private static Scanner in = new Scanner(System.in);
 
+    /**
+     *  Method to read the size of the input. It
+     *  validates that the size is greater or equal
+     *  than 2.
+     *  
+     *  @return n the size of the input.
+     */
     public static int readInputSize(){
 
         int n = -1;
@@ -16,6 +31,14 @@ public class Main{
         return n;
     }
 
+    /**
+     *  Method that reads the list of integers
+     *  whose frequency table and statistic measures
+     *  are to be computed.
+     *  
+     *  @param n the amount of integers to be read.
+     *  @return data an array storing the integers.
+     */
     public static int[] readData(int n){
 
         // Create an array in which the integers 
@@ -31,6 +54,9 @@ public class Main{
         return data;
     }
 
+    /**
+     * Main method that triggers the execution.
+     */
     public static void main(String[] args) {
 
         int n = readInputSize();
