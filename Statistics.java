@@ -137,11 +137,14 @@ public class Statistics {
 	 *	@return			Smallest mode value.
 	 */
 	public static int mode(int[] data) {
-		int mode = 0;
+		int mode = data[0];
+		int modeValue = 0;
 		
 		for(HashMap.Entry<Integer, Integer> entry : frequencies(data).entrySet()) {
-			if(entry.getValue() > mode)
+			if(entry.getValue() > modeValue) {
 				mode = entry.getKey();
+				modeValue = entry.getValue();
+			}
 		}
 		
 		return mode;
