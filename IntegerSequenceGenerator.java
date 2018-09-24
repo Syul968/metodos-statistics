@@ -1,5 +1,5 @@
 /**
-	Generator
+	IntegerSequenceGenerator
 	This class implements the Linear Congruential
 	pseudorandom numbers generator. It generates numbers
 	based on input for all four parameters of the recurrence
@@ -12,7 +12,7 @@
 */
 import java.util.*;
 
-public class Generator {
+public class IntegerSequenceGenerator {
 	private int mod;
 	private int multiplier;
 	private int increment;
@@ -28,7 +28,7 @@ public class Generator {
 		@param	increment	Recurrence relation 'c' parameter.
 		@param	mod			Modulo for the recurrence relation.
 	*/
-	public Generator(int seed, int multiplier, int increment, int mod) {
+	public IntegerSequenceGenerator(int seed, int multiplier, int increment, int mod) {
 		this.xCurr = this.seed = seed;	//	First number is the seed
 		this.multiplier = multiplier;
 		this.increment = increment;
@@ -43,7 +43,7 @@ public class Generator {
 	/**
 		Get seed
 		Returns the generator's seed.
-		@return		Generator's seed.
+		@return		IntegerSequenceGenerator's seed.
 	*/
 	public int getSeed() {
 		return this.seed;
@@ -53,7 +53,7 @@ public class Generator {
 		Get multiplier
 		Returns the generator's multiplier used in the
 		recurrence relation.
-		@return		Generator's multiplier.
+		@return		IntegerSequenceGenerator's multiplier.
 	*/
 	public int getMultiplier() {
 		return this.multiplier;
@@ -63,7 +63,7 @@ public class Generator {
 		Get increment
 		Returns the generator's increment, as used in
 		the recurrence relation.
-		@param		Generator's increment.
+		@param		IntegerSequenceGenerator's increment.
 	*/
 	public int getIncrement() {
 		return this.increment;
@@ -73,7 +73,7 @@ public class Generator {
 		Get modulo
 		Returns the generator's modulo used in the
 		recurrence relation.
-		@return		Generator's modulo.
+		@return		IntegerSequenceGenerator's modulo.
 	*/
 	public int getMod() {
 		return this.mod;
@@ -83,7 +83,7 @@ public class Generator {
 		Validate
 		Validates parameters of the generator according to
 		the recurrence relation constraints. This method
-		is called in the Generator constructor.
+		is called in the IntegerSequenceGenerator constructor.
 		@return		Whether generator's parameters are valid.
 	*/
 	public boolean validate() {

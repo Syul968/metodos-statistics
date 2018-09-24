@@ -65,7 +65,7 @@ public class Main{
 		System.out.println(Statistics.tableAsString(data));
 		System.out.printf("X- = %.4f\n", Statistics.mean(data));
 		System.out.printf("X~ = %.4f\n", Statistics.median(data));
-		System.out.println("X^ = " + (int)Statistics.mode(data));
+        Statistics.displayMode(data);
 		System.out.printf("s2 = %.4f\n", Statistics.variance(data));
 		System.out.printf("s  = %.4f\n", Statistics.stdDev(data));
 	}
