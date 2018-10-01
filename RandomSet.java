@@ -143,7 +143,16 @@ public class RandomSet {
 
 		return tail;
 	}
-
+	
+	/**
+		Generator modulo
+		Returns the modulo used for generation of this set.
+		@return		Modulo.
+	*/
+	public int genMod() {
+		return this.gen.getMod();
+	}
+	
 	/**
 	 * To string Builds a string representation of the set.
 	 * 

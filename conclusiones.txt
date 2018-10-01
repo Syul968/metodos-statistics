@@ -1,0 +1,12 @@
+Se observa que la distribución de los números en la secuencia
+creada a partir del generador depende de los parámetros provistos.
+
+En particular, se puede señalar que de los tres casos presentados
+el segundo tiene una distribución más uniforme, y es también el que
+presenta el mayor periodo (4709); aunque su longitud es pequeña respecto
+al módulo completo (9419).
+
+Se concluye que la selección de parametros para el generador, en especial
+del multiplicador y el módulo, determinan la longitud y distribución de
+los elementos en la secuencia. Es posible obtener la máxima longitud de
+periodo cuando el multiplicador y el módulo son coprimos.

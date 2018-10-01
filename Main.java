@@ -1,72 +1,53 @@
 import java.util.*;
 
 /**
- * Main class which includes the main method.
- * 
- * @version 08/28/2018
- * @author Luis Francisco Flores Romero - A01328937
- * @author Salvador Orozco Villalever - A07104218
- */
-
-public class Main{
-
-    private static Scanner in = new Scanner(System.in);
-
-    /**
-     *  Method to read the size of the input. It
-     *  validates that the size is greater or equal
-     *  than 2.
-     *  
-     *  @return n the size of the input.
-     */
-    public static int readInputSize(){
-
-        int n = -1;
-
-        while(n <= 1){
-
-            n = in.nextInt();
-        }
-
-        return n;
-    }
-
-    /**
-     *  Method that reads the list of integers
-     *  whose frequency table and statistic measures
-     *  are to be computed.
-     *  
-     *  @param n the amount of integers to be read.
-     *  @return data an array storing the integers.
-     */
-    public static int[] readData(int n){
-
-        // Create an array in which the integers 
-        // from the input will be stored
-        int[] data = new int[n];
+	Main
+	This class makes use of pseudorandom numbers set
+	to display the central tendency and spread measures
+	of a LCG.
+	
+	@author		A07104218	Salvador Orozco Villalever
+	@author		A01328937	Luis Francisco Flores Romero
+	@version	1.0
+	@since		25.sep.2018
+*/
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
 		
-        // Read data
-		for(int i = 0; i < n; i++) {
-
-			data[i] = in.nextInt();
-		}
-
-        return data;
-    }
-
-    /**
-     * Main method that triggers the execution.
-     */
-    public static void main(String[] args) {
-
-        int n = readInputSize();
-        int[] data = readData(n);
+		int seed = in.nextInt();
+		int a = in.nextInt();
+		int c = in.nextInt();
+		int mod = in.nextInt();
+		int n = in.nextInt();
 		
-		System.out.println(Statistics.tableAsString(data));
-		System.out.printf("X- = %.4f\n", Statistics.mean(data));
-		System.out.printf("X~ = %.4f\n", Statistics.median(data));
-        Statistics.displayMode(data);
-		System.out.printf("s2 = %.4f\n", Statistics.variance(data));
-		System.out.printf("s  = %.4f\n", Statistics.stdDev(data));
+		RandomSet set = new RandomSet(seed, a, c, mod);
+		System.out.println("TAIL " + "(" + set.getTailLength() + ")");
+		int[] tail = set.getTail();
+		for(int num : tail)
+			System.out.print(num + " ");
+		System.out.println();
+			
+		System.out.println("PERIOD " + "(" + set.getPeriodLength() + ")");
+		int[] period = set.getPeriod();
+		for(int num : period)
+			System.out.print(num + " ");
+		System.out.println();
+		
+		System.out.println("CYCLE " + "(" + set.getCycleLength() + ")");
+		int[] cycle = set.getCycle();
+		for(int num : cycle)
+			System.out.print(num + " ");
+		System.out.println();
+		
+		System.out.println("Numbers (" + n + ")");
+		int[] nums = set.generate(n);
+		for(int num : nums)
+			System.out.print(num + " ");
+		System.out.println();
+		
+		Statistics.displayCentralTendencyAndSpreadMeasures(nums);
+		double[] rangesArr = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+		Statistics.displayRangeCountPercentage(rangesArr, Statistics.computeNormalizedSequence(nums, set.genMod()));
 	}
 }
