@@ -22,15 +22,15 @@ public class Main {
 		int n = in.nextInt();
 		
 		RandomSet set = new RandomSet(seed, a, c, mod);
-		System.out.println("TAIL " + "(" + set.getTailLength() + ")");
-		int[] tail = set.getTail();
-		for(int num : tail)
-			System.out.print(num + " ");
-		System.out.println();
-			
 		System.out.println("PERIOD " + "(" + set.getPeriodLength() + ")");
 		int[] period = set.getPeriod();
 		for(int num : period)
+			System.out.print(num + " ");
+		System.out.println();
+		
+		System.out.println("TAIL " + "(" + set.getTailLength() + ")");
+		int[] tail = set.getTail();
+		for(int num : tail)
 			System.out.print(num + " ");
 		System.out.println();
 		
