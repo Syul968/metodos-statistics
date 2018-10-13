@@ -23,13 +23,18 @@ public class Fraction implements Comparable<Fraction> {
     public Fraction(long numerator, long denominator){
 
         assert denominator != 0: "The denominator of the fraction is zero";
-
+        
         // To reduce the fraction to its lowest terms, compute the
         // greatest common divisor between the numerator and the 
         // denominator. Then divide each term by their gcd.
         long gcd = Mathematics.computeGCD(numerator, denominator);
         setNumerator(numerator/gcd);
         setDenominator(denominator/gcd);
+        
+        if(this.denominator < 0) {
+            this.denominator *= -1;
+            this.numerator *= -1;
+        }
     }
 
     /**
@@ -114,6 +119,23 @@ public class Fraction implements Comparable<Fraction> {
         long den2 = f2.getDenominator();
 
         return new Fraction(num1*den2 + num2*den1, den1*den2);
+    }
+    
+    /**
+     *  Method to substract one fraction from another
+     *  
+     *  @param f2 the fraction to be substracted.
+     *  @return a new fraction corresponding to the result
+     *  of the substraction.
+     */
+    public Fraction substract(Fraction f2){
+
+        long num1 = this.getNumerator();
+        long den1 = this.getDenominator();
+        long num2 = f2.getNumerator();
+        long den2 = f2.getDenominator();
+
+        return new Fraction(num1*den2 - num2*den1, den1*den2);
     }
     
     /**

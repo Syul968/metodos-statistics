@@ -76,4 +76,49 @@ public class Mathematics{
 		
 		return r;
 	}
+	
+	/**
+		Equations matrix
+		Compute the equations system of a matrix.
+		The input matrix must be a Markov's chain transition
+		matrix.
+		@param	t	Matrix from which to find the system.
+		@return		The equations system as matrix.
+	*/
+	public static Fraction[][] equationsMatrix(Fraction[][] t) {
+		int states = t.length;
+		int n = states - 1;
+		Fraction[][] equations = new Fraction[n][n];
+		
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				equations[i][j] = t[j][i].substract(t[n][i]);
+				
+				if(i == j)
+					equations[i][j] = equations[i][j].substract(new Fraction(1, 1));
+			}
+		}
+		
+		return equations;
+	}
+	
+	/**
+		Solutions vector
+		Compute the solutions for the equations system of a matrix.
+		The input matrix must be a Markov's chain transition
+		matrix.
+		@param	t	Matrix of which to get the solutions.
+		@return		Solutions vector.
+	*/
+	public static Fraction[] solutionsVector(Fraction[][] t) {
+		int states = t.length;
+		int n = states - 1;
+		Fraction[] solutions = new Fraction[n];
+		
+		for(int i = 0; i < n; i++) {
+			solutions[i] = t[n][i].multiply(new Fraction(-1, 1));
+		}
+		
+		return solutions;
+	}
 }
