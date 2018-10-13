@@ -136,6 +136,19 @@ public class Mathematics{
 	}
 	
 	/**
+		Swap vector values
+		Swap the values in an array by their indices (base 0).
+		@param	v	The array to perform the operation with.
+		@param	a	One of the elements to be swaped.
+		@param	b	The other element to be swaped.
+	*/
+	public static void swapVectorValues(Fraction[] v, int a, int b) {
+		Fraction temp = v[a];
+		v[a] = v[b];
+		v[b] = temp;
+	}
+	
+	/**
 		Multiply row
 		Multiply the row of a matrix by given fraction.
 		@param	t	The matrix to perform the operation with.
@@ -150,10 +163,23 @@ public class Mathematics{
 	}
 	
 	/**
+		Multiply vector value
+		Multiply vector value by given fraction.
+		@param	v	The array to perform the operation with.
+		@param	i	Index of the element to be multiplied.
+		@param	f	The fraction to multiply the element by.
+	*/
+	public static void multiplyVectorValue(Fraction[] v, int i, Fraction f) {
+		assert (f.getNumerator() != 0): "Should not multiply value by 0";
+		
+		v[i] = v[i].multiply(f);
+	}
+	
+	/**
 		Add row multiple
 		Add the multiple of a row to another row in a matrix.
 		@param	t	The matrix to perform the operation with.
-		@param	f	The multiple.
+		@param	f	The multiplying factor.
 		@param	a	The index of row to be multiplied and added.
 		@param	b	The index of to row to add the multiplied row to.
 	*/
@@ -163,5 +189,19 @@ public class Mathematics{
 		Fraction[] mulRow = new Fraction[t[a].length];
 		for(int i = 0; i < t[a].length; i++)
 			t[b][i] = t[b][i].add(t[a][i].multiply(f));
+	}
+	
+	/**
+		Add vector value multiple
+		Add the multiple of an element to another element in an array.
+		@param	v	The array to perform the operation with.
+		@param	f	The multiplying factor.
+		@param	a	Index of the element to be multiplied and added.
+		@param	b	Index of the element to add the multiplicated element to.
+	*/
+	public static void addVectorValueMultiple(Fraction[] v, Fraction f, int a, int b) {
+		assert (f.getNumerator() != 0): "That operation doesn't make any sense...";
+		
+		v[b] = v[b].add(v[a].multiply(f));
 	}
 }

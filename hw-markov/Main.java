@@ -60,13 +60,5 @@ public class Main {
 			printMatrix(acc);
 			System.out.println();
 		}
-		
-		System.out.println("EQUATIONS SYSTEM");
-		Fraction[][] sys = Mathematics.equationsMatrix(t);
-		printMatrix(sys);
-		System.out.println();
-		
-		Mathematics.addRowMultiple(sys, new Fraction(1, 2), 0, 1);
-		printMatrix(sys);
 	}
 }
