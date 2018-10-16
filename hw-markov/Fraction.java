@@ -169,4 +169,9 @@ public class Fraction implements Comparable<Fraction> {
         
         return 1;
     }
+
+    public Fraction computeInverse(){
+
+        return new Fraction(this.getDenominator(), this.getNumerator());
+    }
 }

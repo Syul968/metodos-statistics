@@ -11,6 +11,7 @@ import java.util.*;
 	@since		12.oct.2018
 */
 public class Main {
+	
 	/**
 		Print matrix
 		Print given matrix of fractions.
@@ -23,6 +24,23 @@ public class Main {
 				System.out.print(m[i][j] + "   ");
 			}
 			System.out.println();
+		}
+	}
+
+	/**
+		Print fraction array
+		Print given array of fractions.
+		@param	arr	The array to print.
+		@return		Nothing.
+	*/
+	public static void printFractionArray(Fraction[] arr) {
+		
+		for(int i = 0; i < arr.length; i++) {
+
+			if(i > 0)
+				System.out.print(", ");
+
+			System.out.print(arr[i]);
 		}
 	}
 	
@@ -62,8 +80,12 @@ public class Main {
 			System.out.println();
 		}
 
+		MarkovChain mc = new MarkovChain(t);
 		System.out.println("Equations matrix:\n");
-		Fraction[][] equationsMatrix = MarkovChain.computeEquationsMatrix(t);
-		printMatrix(equationsMatrix);
+		printMatrix(mc.getEquationsMatrix());
+
+		Fraction[] fixedPointVector = mc.extractFixedPointVector();
+		System.out.println("Fixed point vector:\n");
+		printFractionArray(fixedPointVector);
 	}
 }

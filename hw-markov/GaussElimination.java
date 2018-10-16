@@ -1,45 +1,77 @@
 public class GaussElimination{
 
+	private Fraction[][] matrix;
+	int rowCount;
+	int colCount;
+
+	public GaussElimination(Fraction[][] t){
+
+		rowCount = t.length;
+		colCount = t[0].length;
+
+		// Copy the matrix
+		matrix = new Fraction[rowCount][colCount];
+
+		for(int i = 0; i < t.length; i++)
+			for(int j = 0; j < t[i].length; j++)
+				matrix[i][j] = t[i][j];
+
+		computeReducedRowEchelonForm();
+	}
+
     /**
 		Swap rows
 		Swap two rows of a matrix by their indices (base 0).
-		@param	t	The matrix to perform the operation with.
-		@param	a	One of the rows to be swaped.
-		@param	b	The other row to be swaped.
+		@param	rowIndex1	The index of one of the rows to be swapped.
+		@param	rowIndex2	The index of the other row to be swapped.
 	*/
-	public static void swapRows(Fraction[][] t, int a, int b) {
-		Fraction[] temp = t[a];
-		t[a] = t[b];
-		t[b] = temp;
+	public void swapRows(int rowIndex1, int rowIndex2) {
+		
+		Fraction[] temp = matrix[rowIndex1];
+		matrix[rowIndex1] = matrix[rowIndex2];
+		matrix[rowIndex2] = temp;
     }
     
     /**
 		Multiply row
 		Multiply the row of a matrix by given fraction.
-		@param	t	The matrix to perform the operation with.
 		@param	i	The index of the row to be swaped.
 		@param	f	The fraction to multiply the row by.
 	*/
-	public static void multiplyRow(Fraction[][] t, int i, Fraction f) {
+	public void multiplyRow(int i, Fraction f) {
+		
 		assert (f.getNumerator() != 0): "Should not multiply row by 0";
 		
-		for(int k = 0; k < t[i].length; k++)
-			t[i][k] = t[i][k].multiply(f);
+		for(int k = 0; k < matrix[i].length; k++)
+			matrix[i][k] = matrix[i][k].multiply(f);
     }
     
     /**
 		Add row multiple
 		Add the multiple of a row to another row in a matrix.
-		@param	t	The matrix to perform the operation with.
 		@param	f	The multiplying factor.
 		@param	a	The index of row to be multiplied and added.
 		@param	b	The index of to row to add the multiplied row to.
 	*/
-	public static void addRowMultiple(Fraction[][] t, Fraction f, int a, int b) {
+	public void addRowMultiple(Fraction f, int a, int b) {
+		
 		assert (f.getNumerator() != 0): "That operation doesn't make any sense...";
 		
-		Fraction[] mulRow = new Fraction[t[a].length];
-		for(int i = 0; i < t[a].length; i++)
-			t[b][i] = t[b][i].add(t[a][i].multiply(f));
+		for(int i = 0; i < matrix[a].length; i++)
+			matrix[b][i] = matrix[b][i].add(matrix[a][i].multiply(f));
+	}
+
+	public void computeReducedRowEchelonForm(){
+
+
+	}
+
+	/**
+	 * Getter for the matrix
+	 * @return
+	 */
+	public Fraction[][] getMatrix(){
+
+		return matrix;
 	}
 }
