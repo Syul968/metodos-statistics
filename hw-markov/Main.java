@@ -35,6 +35,7 @@ public class Main {
 	*/
 	public static void printFractionArray(Fraction[] arr) {
 		
+		System.out.print("(");
 		for(int i = 0; i < arr.length; i++) {
 
 			if(i > 0)
@@ -42,6 +43,8 @@ public class Main {
 
 			System.out.print(arr[i]);
 		}
+
+		System.out.print(")\n");
 	}
 	
 	/**
@@ -73,6 +76,8 @@ public class Main {
 		steps = in.nextInt();
 		System.out.println("P1");
 		printMatrix(acc);
+		System.out.println();
+
 		for(int i = 1; i < steps; i++) {
 			System.out.println("P" + (i + 1));
 			acc = Mathematics.multiplyMatrices(acc, t);
@@ -83,6 +88,7 @@ public class Main {
 		MarkovChain mc = new MarkovChain(t);
 		System.out.println("Equations matrix:\n");
 		printMatrix(mc.getEquationsMatrix());
+		System.out.println();
 
 		Fraction[] fixedPointVector = mc.extractFixedPointVector();
 		System.out.println("Fixed point vector:\n");
