@@ -33,6 +33,7 @@ public class Main {
 		@return			Nothing.
 	*/
 	public static void main(String[] args) {
+		
 		Fraction[][] t, acc;
 		int states;
 		int steps;
@@ -60,5 +61,9 @@ public class Main {
 			printMatrix(acc);
 			System.out.println();
 		}
+
+		System.out.println("Equations matrix:\n");
+		Fraction[][] equationsMatrix = MarkovChain.computeEquationsMatrix(t);
+		printMatrix(equationsMatrix);
 	}
 }
