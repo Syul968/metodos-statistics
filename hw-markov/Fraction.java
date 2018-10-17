@@ -152,17 +152,23 @@ public class Fraction implements Comparable<Fraction> {
         return new Fraction(num, den);
     }
 
+    /**
+     * Method for dividing fraction
+     * @param f2 the fraction to divide this fraction by
+     * @return the result of the division
+     */
     public Fraction divide(Fraction f2){
 
         return multiply(new Fraction(f2.getDenominator(), f2.getNumerator()));
     }
     
     /**
-        Compare to
-        Compare this fraction to given fraction.
-        @param    f2    Fraction to compare this fraction to.
-        @return         -1 if this fraction is smaller, 0 if fractions are equal, 1 if this fraction is greater.
-    */
+     *  Compare to
+     *  Compare this fraction to given fraction.
+     *  @param  f2  Fraction to compare this fraction to.
+     *  @return  -1 if this fraction is smaller, 0 if fractions are equal, 
+     *  1 if this fraction is greater.
+     */
     public int compareTo(Fraction f2) {
         double leftProduct = this.getNumerator() * f2.getDenominator();
         double rightProduct = f2.getNumerator() * this.getDenominator();
@@ -175,8 +181,29 @@ public class Fraction implements Comparable<Fraction> {
         return 1;
     }
 
-    public Fraction computeInverse(){
+    /**
+     * Method that compares this fraction with another one 
+     * using the absolute value.
+     * @param f2 the fraction to compare this one to.
+     * @return -1 if this fraction is smaller, 0 if fractions are equal, 
+     * 1 if this fraction is greater.
+     */
+    public int compareToAbsValue(Fraction f2){
 
-        return new Fraction(this.getDenominator(), this.getNumerator());
+        long num1 = this.getNumerator();
+        long den1 = this.getDenominator();
+        long num2 = f2.getNumerator();
+        long den2 = f2.getDenominator();
+
+        long absProd1 = Math.abs(num1 * den2);
+        long absProd2 = Math.abs(num2 * den1);
+
+        if(absProd1 < absProd2)
+            return -1;
+
+        else if(absProd1 == absProd2)
+            return 0;
+
+        return 1;
     }
 }

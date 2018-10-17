@@ -50,12 +50,12 @@ public class Mathematics{
 	}
 	
 	/**
-		Multiply matrices
-		Compute A x B product of given fraction matrices.
-		@param	a	Matrix A.
-		@param	b	Matrix B.
-		@return		Matrices product.
-	*/
+	 *	Multiply matrices
+	 *	Compute A x B product of given fraction matrices.
+	 *	@param	a	Matrix A.
+	 *	@param	b	Matrix B.
+	 *	@return		Matrices product.
+	 */
 	public static Fraction[][] multiplyMatrices(Fraction[][] a, Fraction[][] b) {
 		if(a[0].length != b.length) {	// Verify matrices can be multiplied
 			System.out.println("Matrices are not compatible");
@@ -75,5 +75,27 @@ public class Mathematics{
 		}
 		
 		return r;
+	}
+
+	/**
+	 * Method to compare two fraction matrices
+	 * @param m1 the first matrix in the comparison
+	 * @param m2 the second matrix in the comparison
+	 * @return True if the matrices are equal. Else, false.
+	 */
+	public static Boolean compareFractionMatrices(Fraction[][] m1, Fraction[][] m2){
+
+		int n = m1.length;
+		int m = m1[0].length;
+
+		if(n != m2.length || m != m2[0].length)
+			return false;
+
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < m; j++)
+				if(m1[i][j].compareTo(m2[i][j]) != 0)
+					return false;
+
+		return true;
 	}
 }

@@ -10,14 +10,14 @@ import java.util.*;
 	@version	1.0
 	@since		12.oct.2018
 */
+
 public class Main {
 	
 	/**
-		Print matrix
-		Print given matrix of fractions.
-		@param	m	The matrix to print.
-		@return		Nothing.
-	*/
+	 *	Print given matrix of fractions.
+	 *	@param	m	The matrix to print.
+	 *	@return		Nothing.
+	 */
 	public static void printMatrix(Fraction[][] m) {
 		for(int i = 0; i < m.length; i++) {
 			for(int j = 0; j < m[0].length; j++) {
@@ -28,11 +28,10 @@ public class Main {
 	}
 
 	/**
-		Print fraction array
-		Print given array of fractions.
-		@param	arr	The array to print.
-		@return		Nothing.
-	*/
+	 *	Print given array of fractions.
+	 *	@param	arr	The array to print.
+	 *	@return		Nothing.
+	 */
 	public static void printFractionArray(Fraction[] arr) {
 		
 		System.out.print("(");
@@ -48,11 +47,10 @@ public class Main {
 	}
 	
 	/**
-		Main
-		This method reads input to build a transition matrix.
-		@param	args	Input from input stream.
-		@return			Nothing.
-	*/
+	 *	This method reads input to build a transition matrix.
+	 *	@param	args	Input from input stream.
+	 *	@return			Nothing.
+	 */
 	public static void main(String[] args) {
 		
 		Fraction[][] t, acc;
