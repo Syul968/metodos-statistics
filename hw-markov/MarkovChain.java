@@ -43,13 +43,13 @@ public class MarkovChain{
 	}
 
     /**
-		Equations matrix
-		Compute the equations system of a matrix.
-		The input matrix must be a Markov's chain transition
-		matrix.
-		@param	t	Matrix from which to find the system.
-		@return		The equations system as matrix.
-	*/
+	 *	Equations matrix
+	 *	Compute the equations system of a matrix.
+	 *	The input matrix must be a Markov's chain transition
+	 *	matrix.
+	 *	@param	t	Matrix from which to find the system.
+	 *	@return		The equations system as matrix.
+	 */
 	public Fraction[][] computeEquationsMatrix(Fraction[][] t) {
 		
 		int states = t.length;
@@ -76,6 +76,13 @@ public class MarkovChain{
 		return equations;
 	}
 
+	/**
+	 * Method that computes the fixed-point vector of the Markov chain
+	 * given the solution vector of the linear equations matrix.
+	 * @param matrixSolutionVector the solution vector of the linear equations matrix
+	 * obtained by performing Gaussian elimination.
+	 * @return the fixed-point vector of the Markov chain.
+	 */
 	public Fraction[] computeFixedPointVector(Fraction[] matrixSolutionVector){
 
 		// The matrix solution vector only contains n - 1 entries of the Markov Chain
