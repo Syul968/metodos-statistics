@@ -18,7 +18,7 @@ public class MarkovChain{
 
 	/**
 	 * Constructor of the Markov Chain
-	 * @param t
+	 * @param t the probabilities matrix of the Markov Chain
 	 */
 	public MarkovChain(Fraction[][] t){
 
