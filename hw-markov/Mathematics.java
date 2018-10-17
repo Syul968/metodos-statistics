@@ -50,12 +50,12 @@ public class Mathematics{
 	}
 	
 	/**
-		Multiply matrices
-		Compute A x B product of given fraction matrices.
-		@param	a	Matrix A.
-		@param	b	Matrix B.
-		@return		Matrices product.
-	*/
+	 *	Multiply matrices
+	 *	Compute A x B product of given fraction matrices.
+	 *	@param	a	Matrix A.
+	 *	@param	b	Matrix B.
+	 *	@return		Matrices product.
+	 */
 	public static Fraction[][] multiplyMatrices(Fraction[][] a, Fraction[][] b) {
 		if(a[0].length != b.length) {	// Verify matrices can be multiplied
 			System.out.println("Matrices are not compatible");
@@ -76,132 +76,26 @@ public class Mathematics{
 		
 		return r;
 	}
-	
+
 	/**
-		Equations matrix
-		Compute the equations system of a matrix.
-		The input matrix must be a Markov's chain transition
-		matrix.
-		@param	t	Matrix from which to find the system.
-		@return		The equations system as matrix.
-	*/
-	public static Fraction[][] equationsMatrix(Fraction[][] t) {
-		int states = t.length;
-		int n = states - 1;
-		Fraction[][] equations = new Fraction[n][n];
-		
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
-				equations[i][j] = t[j][i].substract(t[n][i]);
-				
-				if(i == j)
-					equations[i][j] = equations[i][j].substract(new Fraction(1, 1));
-			}
-		}
-		
-		return equations;
-	}
-	
-	/**
-		Solutions vector
-		Compute the solutions for the equations system of a matrix.
-		The input matrix must be a Markov's chain transition
-		matrix.
-		@param	t	Matrix of which to get the solutions.
-		@return		Solutions vector.
-	*/
-	public static Fraction[] solutionsVector(Fraction[][] t) {
-		int states = t.length;
-		int n = states - 1;
-		Fraction[] solutions = new Fraction[n];
-		
-		for(int i = 0; i < n; i++) {
-			solutions[i] = t[n][i].multiply(new Fraction(-1, 1));
-		}
-		
-		return solutions;
-	}
-	
-	/**
-		Swap rows
-		Swap two rows of a matrix by their indices (base 0).
-		@param	t	The matrix to perform the operation with.
-		@param	a	One of the rows to be swaped.
-		@param	b	The other row to be swaped.
-	*/
-	public static void swapRows(Fraction[][] t, int a, int b) {
-		Fraction[] temp = t[a];
-		t[a] = t[b];
-		t[b] = temp;
-	}
-	
-	/**
-		Swap vector values
-		Swap the values in an array by their indices (base 0).
-		@param	v	The array to perform the operation with.
-		@param	a	One of the elements to be swaped.
-		@param	b	The other element to be swaped.
-	*/
-	public static void swapVectorValues(Fraction[] v, int a, int b) {
-		Fraction temp = v[a];
-		v[a] = v[b];
-		v[b] = temp;
-	}
-	
-	/**
-		Multiply row
-		Multiply the row of a matrix by given fraction.
-		@param	t	The matrix to perform the operation with.
-		@param	i	The index of the row to be swaped.
-		@param	f	The fraction to multiply the row by.
-	*/
-	public static void multiplyRow(Fraction[][] t, int i, Fraction f) {
-		assert (f.getNumerator() != 0): "Should not multiply row by 0";
-		
-		for(int k = 0; k < t[i].length; k++)
-			t[i][k] = t[i][k].multiply(f);
-	}
-	
-	/**
-		Multiply vector value
-		Multiply vector value by given fraction.
-		@param	v	The array to perform the operation with.
-		@param	i	Index of the element to be multiplied.
-		@param	f	The fraction to multiply the element by.
-	*/
-	public static void multiplyVectorValue(Fraction[] v, int i, Fraction f) {
-		assert (f.getNumerator() != 0): "Should not multiply value by 0";
-		
-		v[i] = v[i].multiply(f);
-	}
-	
-	/**
-		Add row multiple
-		Add the multiple of a row to another row in a matrix.
-		@param	t	The matrix to perform the operation with.
-		@param	f	The multiplying factor.
-		@param	a	The index of row to be multiplied and added.
-		@param	b	The index of to row to add the multiplied row to.
-	*/
-	public static void addRowMultiple(Fraction[][] t, Fraction f, int a, int b) {
-		assert (f.getNumerator() != 0): "That operation doesn't make any sense...";
-		
-		Fraction[] mulRow = new Fraction[t[a].length];
-		for(int i = 0; i < t[a].length; i++)
-			t[b][i] = t[b][i].add(t[a][i].multiply(f));
-	}
-	
-	/**
-		Add vector value multiple
-		Add the multiple of an element to another element in an array.
-		@param	v	The array to perform the operation with.
-		@param	f	The multiplying factor.
-		@param	a	Index of the element to be multiplied and added.
-		@param	b	Index of the element to add the multiplicated element to.
-	*/
-	public static void addVectorValueMultiple(Fraction[] v, Fraction f, int a, int b) {
-		assert (f.getNumerator() != 0): "That operation doesn't make any sense...";
-		
-		v[b] = v[b].add(v[a].multiply(f));
+	 * Method to compare two fraction matrices
+	 * @param m1 the first matrix in the comparison
+	 * @param m2 the second matrix in the comparison
+	 * @return True if the matrices are equal. Else, false.
+	 */
+	public static Boolean compareFractionMatrices(Fraction[][] m1, Fraction[][] m2){
+
+		int n = m1.length;
+		int m = m1[0].length;
+
+		if(n != m2.length || m != m2[0].length)
+			return false;
+
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < m; j++)
+				if(m1[i][j].compareTo(m2[i][j]) != 0)
+					return false;
+
+		return true;
 	}
 }
