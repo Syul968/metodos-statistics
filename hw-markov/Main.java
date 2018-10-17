@@ -86,11 +86,11 @@ public class Main {
 		}
 
 		MarkovChain mc = new MarkovChain(t);
-		System.out.println("Equations matrix:\n");
-		printMatrix(mc.getEquationsMatrix());
-		System.out.println();
+		// System.out.println("Equations matrix:\n");
+		// printMatrix(mc.getEquationsMatrix());
+		// System.out.println();
 
-		Fraction[] fixedPointVector = mc.extractFixedPointVector();
+		Fraction[] fixedPointVector = mc.getFixedPointVector();
 		System.out.println("Fixed point vector:\n");
 		printFractionArray(fixedPointVector);
 	}

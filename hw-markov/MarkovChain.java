@@ -1,12 +1,16 @@
 public class MarkovChain{
 
+	private Fraction[][] probabilitiesMatrix;
 	private Fraction[][] equationsMatrix;
+	private Fraction[] fixedPointVector;
 
 	/**
 	 * Constructor of the Markov Chain
 	 * @param t
 	 */
 	public MarkovChain(Fraction[][] t){
+
+		probabilitiesMatrix = copyFractionMatrix(t);
 
 		// Build the equations matrix
 		equationsMatrix = computeEquationsMatrix(t);
@@ -15,7 +19,30 @@ public class MarkovChain{
 		GaussElimination ge = new GaussElimination(equationsMatrix);
 		
 		// Update the equations matrix to its reduced row echelon form
-		equationsMatrix = ge.getMatrix();
+		equationsMatrix = copyFractionMatrix(ge.getMatrix());
+
+		fixedPointVector = copyArray(ge.getSolutionVector());
+	}
+
+	public Fraction[][] copyFractionMatrix(Fraction[][] matrix){
+
+		Fraction[][] newMatrix = new Fraction[matrix.length][matrix[0].length];
+
+		for(int i = 0; i < matrix.length; i++)
+			for(int j = 0; j < matrix[i].length; j++)
+				newMatrix[i][j] = matrix[i][j];
+
+		return newMatrix;
+	}
+
+	public Fraction[] copyArray(Fraction[] arr){
+
+		Fraction[] newArr = new Fraction[arr.length];
+
+		for(int i = 0; i < arr.length; i++)
+			newArr[i] = arr[i];
+
+		return newArr;
 	}
 
     /**
@@ -35,10 +62,10 @@ public class MarkovChain{
 		
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < n; j++) {
-				equations[i][j] = t[j][i].substract(t[n][i]);
+				equations[i][j] = t[j][i].subtract(t[n][i]);
 				
 				if(i == j)
-					equations[i][j] = equations[i][j].substract(new Fraction(1, 1));
+					equations[i][j] = equations[i][j].subtract(new Fraction(1, 1));
 			}
 		}
 
@@ -59,21 +86,14 @@ public class MarkovChain{
 
 		return equationsMatrix;
 	}
-	
-	/**
-	 * Method that extracts the fixed-point vector from the of the Markov Chain 
-	 * in its reduced row echelon form. 
-	 * @return fixedPointVector an Fraction array corresponding to the fixed-point vector.
-	 */
-	public Fraction[] extractFixedPointVector(){
 
-		Fraction[] fixedPointVector = new Fraction[equationsMatrix.length];
-		
-		for(int i = 0; i < equationsMatrix.length; i++){
-
-			fixedPointVector[i] = equationsMatrix[i][i];
-		}
+	public Fraction[] getFixedPointVector(){
 
 		return fixedPointVector;
+	}
+
+	public static Boolean fixedPointVectorIsCorrect(){
+
+		return false;
 	}
 }

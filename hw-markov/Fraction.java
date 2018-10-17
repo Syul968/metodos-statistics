@@ -122,13 +122,13 @@ public class Fraction implements Comparable<Fraction> {
     }
     
     /**
-     *  Method to substract one fraction from another
+     *  Method to subtract one fraction from another
      *  
-     *  @param f2 the fraction to be substracted.
+     *  @param f2 the fraction to be subtracted.
      *  @return a new fraction corresponding to the result
-     *  of the substraction.
+     *  of the subtraction.
      */
-    public Fraction substract(Fraction f2){
+    public Fraction subtract(Fraction f2){
 
         long num1 = this.getNumerator();
         long den1 = this.getDenominator();
@@ -150,6 +150,11 @@ public class Fraction implements Comparable<Fraction> {
         long den = this.getDenominator() * f2.getDenominator();
         
         return new Fraction(num, den);
+    }
+
+    public Fraction divide(Fraction f2){
+
+        return multiply(new Fraction(f2.getDenominator(), f2.getNumerator()));
     }
     
     /**
